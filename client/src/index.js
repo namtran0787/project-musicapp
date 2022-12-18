@@ -13,10 +13,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Router>
-        <StateProvider initialState={initialState} reducer={reducer}>
-            {/* NOTE: Context là global variable. */}
-             <App />
-        </StateProvider>
+            <StateProvider initialState={initialState} reducer={reducer}>
+                {/* NOTE: Context là global variable. */}
+                <App />
+            </StateProvider>
         </Router>
     </React.StrictMode>
 );

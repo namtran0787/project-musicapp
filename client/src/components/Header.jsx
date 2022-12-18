@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { Logo } from '../assets/img/index'
+import { Logo, WubiLogo } from '../assets/img/index'
 import { isActiveStyles, isNotActiveStyles } from '../utils/styles'
 import { FaCrown } from 'react-icons/fa'
 import { useStateValue } from '../context/StateProvider'
@@ -26,9 +26,9 @@ const Header = () => {
         navigate('/login', { replace : true})
     }
   return (
-    <header className='flex items-center w-full p-4 md:py-2 md:px-6'>
+    <header className='flex items-center w-full p-4 md:py-2 md:px-6 bg-[#c1c9d7] rounded-b-[1.5rem]'>
         <NavLink to='/'>
-            <img src={Logo} alt="Logo" className='w-16'/>
+            <img src={WubiLogo} alt="Logo" className='w-16'/>
         </NavLink>
 
         <ul className='flex items-center justify-center ml-7'>
@@ -65,7 +65,8 @@ const Header = () => {
         <div 
             onMouseEnter={() => setisMenu(true)}
             onMouseLeave={() => setisMenu(false)}
-            className='flex items-center ml-auto  cursor-pointer gap-2 relative'>
+            className='flex items-center ml-auto cursor-pointer gap-2 relative'>
+                
             <img src={user?.user?.imageURL} alt="" referrerPolicy='no-referrer' className='w-12 h-12 min-w-[44px] object-cover rounded-full shadow-lg' />
             <div className='flex flex-col'>
                 <p className='text-textColor text-lg hover:text-headingColor font-semibold'>{user?.user?.name}</p>
@@ -77,7 +78,7 @@ const Header = () => {
             initial={{opacity : 0, y : 100}}
             animate={{opacity: 1, y : 0}}
             exit = {{opacity: 0, y : 50}}
-            className='absolute flex flex-col z-10 top-12 p-4 right-0 w-275 gap-3 bg-card shadow-lg rounded-lg backdrop-blur-md '>
+            className='absolute flex flex-col z-10 top-12 p-4 right-0 w-275 gap-3 bg-white shadow-lg rounded-lg backdrop-blur-md '>
                 <NavLink to={'/userProfile'}>
                     <p className='text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out'>Profile</p>
                 </NavLink>
@@ -86,17 +87,16 @@ const Header = () => {
                 <hr />
 
                 {
-                user?.user?.role === 'admin' && (
-                <>
-                <NavLink to={'/dashboard/home'}>
-                <p className='text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out'>Dashboard</p>
-                </NavLink>
-                <hr />
+                    user?.user?.role === 'admin' && (
+                    <>
+                    <NavLink to={'/dashboard/home'}>
+                    <p className='text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out'>Dashboard</p>
+                    </NavLink>
+                    <hr />
 
-                </>
+                    </>
 
-                )
-                    
+                    )
                 }
                 <p className='text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out' onClick={logOut}>Sign Out</p>
             </motion.div>

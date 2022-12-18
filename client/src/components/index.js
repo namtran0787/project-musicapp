@@ -1,7 +1,10 @@
 export { default as Login } from './Login'
 export { default as Home } from './Home'
 export { default as Header } from './Header'
+export { default as ComingSoon } from './ComingSoon'
+export { default as Footer } from './Footer'
 export { default as Filter } from "./Filter";
+export { default as Musics } from "./Musics";
 
 
 // NOTE: Dashboard components

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { Login, Home, Dashboard, MusicPlayer } from './components'
+import { Login, Home, Dashboard, MusicPlayer, Musics, ComingSoon } from './components'
 import { app } from './config/firebase.config'
 
 import { getAuth } from 'firebase/auth'
@@ -52,36 +52,51 @@ const App = () => {
         })
     }, [])
     return (
-        <AnimatePresence exitBeforeEnter>
-            
-        <div className="h-auto min-w-[680px] bg-primary flex justify-center items-center">
-            <Routes>
-                <Route 
-                    path='/login'
-                    element={<Login setAuth={setAuth}/>}
-                />
-                <Route
-                    path='/*'
-                    element={<Home />}
-                />
-                <Route
-                    path='/dashboard/*' 
-                    element={<Dashboard />}
-                />
-            </Routes>
+        <AnimatePresence exitBeforeEnter>  
+            <div className="h-auto min-w-[680px] bg-primary flex justify-center items-center">
+                <Routes>
+                    <Route 
+                        path='/login'
+                        element={<Login setAuth={setAuth}/>}
+                    />
+                    <Route
+                        path='/*'
+                        element={<Home />}
+                    />
+                    <Route
+                        path='/musics'
+                        element={<Musics />}
+                    />
+                    <Route
+                        path='/premium'
+                        element={<ComingSoon />}
+                    />
+                    <Route
+                        path='/contact'
+                        element={<ComingSoon />}
+                    />
+                    <Route
+                        path='/userProfile'
+                        element={<ComingSoon />}
+                    />
+                    <Route
+                        path='/dashboard/*' 
+                        element={<Dashboard />}
+                    />
+                </Routes>
 
-            {isSongPlaying && (
-                <motion.div
-                    initial={{ opacity: 0, y: 50}}
-                    animate={{ opacity: 1, y: 0}}
-                    exit={{ opacity: 0, y: 50}}
-                    
-                    className={`fixed min-w-[700px] h-26 inset-x-0 bottom-0 bg-cardOverlay drop-shadow-2xl backdrop-blur-md flex items-center justify-center`}
-                >
-                    <MusicPlayer />
-                </motion.div>
-            )}
-        </div>
+                {isSongPlaying && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 50}}
+                        animate={{ opacity: 1, y: 0}}
+                        exit={{ opacity: 0, y: 50}}
+                        
+                        className={`fixed min-w-[700px] h-26 inset-x-0 bottom-0 bg-cardOverlay drop-shadow-2xl backdrop-blur-md flex items-center justify-center z-20`}
+                    >
+                        <MusicPlayer />
+                    </motion.div>
+                )}
+            </div>
         </AnimatePresence>
     )
 }

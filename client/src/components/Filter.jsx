@@ -42,7 +42,8 @@ const Filter = ({ setFilteredSongs }) => {
     dispatch({ type: actionType.SET_ARTIST_FILTER, artistFilter: null });
     dispatch({ type: actionType.SET_LANGUAGE_FILTER, languageFilter: null });
     dispatch({ type: actionType.SET_ALBUM_FILTER, albumFilter: null });
-    dispatch({ type: actionType.SET_FILTER_TERM, filterTerm: null });
+    dispatch({ type: actionType.SET_FILTER_TERM, filterTerm: "" });
+    // CAREFUL: If set filterTerm is null. These songs don't appear on screen first. You must type clearAllFilter second it is working fine. ==> To fix bug: You must set initial filterTerm is null string ("").
     dispatch({ type: actionType.SET_SEARCH_TERM, searchTerm: ""})
   };
   return (
@@ -51,6 +52,7 @@ const Filter = ({ setFilteredSongs }) => {
       <FilterButtons filterData={allAlbums} flag={"Album"} />
       <FilterButtons filterData={filterByLanguage} flag={"Language"} />
       <FilterButtons filterData={filters} flag={"Category"} />
+      
 
       {/* <div className=" flex items-center gap-6 mx-4">
         {filters?.map((data) => (
@@ -68,15 +70,16 @@ const Filter = ({ setFilteredSongs }) => {
       // NOTE: don't use FilterButtons. These is visible in array
       */} 
 
-      <motion.i
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        whileHover={{ scale: 1.5}}
-        whileTap={{ scale: 0.75 }}
-        onClick={clearAllFilter}
-      >
-        <MdClearAll className="text-textColor text-xl cursor-pointer" />
-      </motion.i>
+        {searchTerm.length > 0 && (<motion.i
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.5}}
+          whileTap={{ scale: 0.75 }}
+          onClick={clearAllFilter}
+          
+        >
+          <MdClearAll className="text-textColor text-xl cursor-pointer" />
+        </motion.i>)}
     </div>
   );
 };

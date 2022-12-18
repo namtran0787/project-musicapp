@@ -78,7 +78,7 @@ const MusicPlayer = () => {
         }
     }
   return (
-    <div className='w-full flex items-center gap-3 '>
+    <div className='w-full flex items-center gap-3 z-10'>
         <div className={`w-full full items-center gap-3 p-4 ${
             miniPlayer ? "absolute top-40" : "flex relative"
             }`}
@@ -153,6 +153,7 @@ const MusicPlayer = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.6 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
                     className="fixed right-3 bottom-3 "
                     >
                     <div className="w-40 h-40 rounded-full flex items-center justify-center  relative ">
